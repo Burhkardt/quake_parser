@@ -9,5 +9,12 @@ class Game:
             self.players.add(nome)
             if nome not in self.kills:
                 self.kills[nome] = 0
-    
-                
+    def count_kills(self, killer, victim):
+        self.total_kills += 1
+        self.add_player(victim)
+        if killer == "<world>":
+            self.kills[victim] -= 1
+        else:
+            self.add_player(killer)
+            self.kills[killer] += 1
+        
