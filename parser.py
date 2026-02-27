@@ -4,3 +4,10 @@ class Game:
         self.total_kills = 0
         self.players = set()
         self.kills = {}
+    def add_player(self, nome):
+        if nome != "<world>":
+            self.players.add(nome)
+            if nome not in self.kills:
+                self.kills[nome] = 0
+    
+                
