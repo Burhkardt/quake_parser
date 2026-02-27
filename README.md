@@ -13,13 +13,13 @@ FastAPI
 ## Como executar o programa
 
 Com o Python instalado, criar um venv *(opcional)* e instalar as dependências da API.
-```bash
+```python
 python -m venv .venv
 pip install fastapi uvicorn
 ```
 
 Após a instalação das dependências, adicionar o arquivo "games.log", executar o comando para criação dos relatórios, e o comando para a inicialização do servidor.
-```bash (Comando de criação)
+```python
 python parser.py
 ```
 ```bash
