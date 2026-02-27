@@ -5,8 +5,9 @@ Este projeto tem a função de analizar o relatório de partida de Quake 3 e col
 ## Ferramentas usadas
 
 Foram usadas as seguintes ferramentas:
-Python 3.13.7
+```Python 3.13.7
 FastAPI
+```
 
 ## Como executar o programa
 
