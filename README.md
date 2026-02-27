@@ -27,4 +27,5 @@ uvicorn api:app --reload
 ```
 Após a inicialização do servidor, acessar o link http://127.0.0.1:8000/docs
 Haverão duas opções de interação, Get Game, onde pegará partidas específicas pelo ID. **Caso queira a lista completa digitar 0**
+
 E Get Rank, que ira apresentar o ranking de pontos de todos os jogadores registrados.
