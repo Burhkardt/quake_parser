@@ -17,4 +17,9 @@ class Game:
         else:
             self.add_player(killer)
             self.kills[killer] += 1
-        
+    def dict_converter(self):
+        return {
+            "total_kills": self.total_kills,
+            "players": list(self.players),
+            "kills": self.kills
+            }
