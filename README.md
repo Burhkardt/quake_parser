@@ -1,52 +1,28 @@
-# Quake Parser
+# Parser e API para relatório e ranking por log do jogo
+    Projeto criado para um teste de POO e API REST.
+    Este projeto tem a função de analizar o relatório de partida de Quake 3 e coletar as informações de abates, realizando também uma contagem dos pontos e a criação de um ranking. E com todos esses dados ele cria dois arquivos .json, "Ranking.json" e "Relatorio.json". E fazendo uso do FastAPI realizar a exibição dos dados
 
-## Task 1
+## Ferramentas usadas
 
-Construa um parser para o arquivo de log games.log.
+    Foram usadas as seguintes ferramentas:
+    Python 3.13.7
+    FastAPI
 
-O arquivo `games.log` é gerado pelo servidor de quake 3 arena. Ele registra todas as informações dos jogos, quando um jogo começa, quando termina, quem matou quem, quem morreu pq caiu no vazio, quem morreu machucado, entre outros.
+## Como executar o programa
 
-O parser deve ser capaz de ler o arquivo, agrupar os dados de cada jogo, e em cada jogo deve coletar as informações de morte.
+Com o Python instalado, criar um venv *(opcional)* e instalar as dependências da API.
+```bash
+python -m venv .venv
+pip install fastapi uvicorn
+```
 
-### Exemplo
-
-  	21:42 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT
-  
-  O player "Isgalamido" morreu pois estava ferido e caiu de uma altura que o matou.
-
-  	2:22 Kill: 3 2 10: Isgalamido killed Dono da Bola by MOD_RAILGUN
-  
-  O player "Isgalamido" matou o player Dono da Bola usando a arma Railgun.
-  
-Para cada jogo o parser deve gerar algo como:
-
-    game_1: {
-	    total_kills: 45;
-	    players: ["Dono da bola", "Isgalamido", "Zeh"]
-	    kills: {
-	      "Dono da bola": 5,
-	      "Isgalamido": 18,
-	      "Zeh": 20
-	    }
-	  }
-
-### Observações
-
-1. Quando o `<world>` mata o player ele perde -1 kill.
-2. `<world>` não é um player e não deve aparecer na lista de players e nem no dicionário de kills.
-3. `total_kills` são os kills dos games, isso inclui mortes do `<world>`.
-
-## Task 2
-
-Após construir o parser construa um script que imprima um relatório de cada jogo (simplemente imprimindo o hash) e um ranking geral de kills por jogador.
-
-## Task 3
-
-Construir uma API com qualquer Linguagem que busque o resultado do Game por ID.
-
-# Requisitos
-
-1. O exercício poderá ser feito em qualquer linguagem, mas você deverá utilizar os conceitos de POO.
-2. Use git e tente fazer commits pequenos e bem descritos.
-3. Faça pelo menos um README explicando como fazer o setup, uma explicação da solução proposta
-4. Siga o que considera boas práticas de programação, coisas que um bom desenvolvedor olhe no seu código e não ache "feio" ou "ruim".
+Após a instalação das dependências, adicionar o arquivo "games.log", executar o comando para criação dos relatórios, e o comando para a inicialização do servidor.
+```bash (Comando de criação)
+python parser.py
+```
+```bash
+uvicorn api:app --reload
+```
+Após a inicialização do servidor, acessar o link http://127.0.0.1:8000/docs
+Haverão duas opções de interação, Get Game, onde pegará partidas específicas pelo ID. **Caso queira a lista completa digitar 0**
+E Get Rank, que ira apresentar o ranking de pontos de todos os jogadores registrados.

@@ -30,7 +30,7 @@ class Game:
     
 
 class Parser:
-    def __init__(self, diretorio):
+    def __init__(self, diretorio="games.log"):
         self.diretorio = diretorio
         self.partidas = {}
 
@@ -43,6 +43,7 @@ class Parser:
                     game_number += 1
                     game = Game(game_number)
                     self.partidas[game.partida] = game
+
                 elif "Kill" in linha_tratada:
                     kill_text = l.split(":")[3]
                     killer = kill_text.split("killed")[0].strip()
@@ -51,10 +52,13 @@ class Parser:
 
     def gera_relatorio(self, jsonlog_name="Relatorio.json"):
         log_formatado = {}
+
         for name, game in self.partidas.items():
             log_formatado[name] = game.dict_converter()
+
         with open(jsonlog_name, "w") as saida:
             json.dump(log_formatado, saida, indent = 4)
+
         print("Relatório gerado")
 
     def gera_ranking(self, jsonlog_name = "Ranking.json"):
@@ -68,9 +72,12 @@ class Parser:
         n=1
         with open("Ranking.json", "w") as saida:
             json.dump(posicoes, saida, indent=4)
+            print("Arquivo de ranking gerado!")
         for player, pontos in posicoes.items():
             print(f"{n}: {player} com um total de {pontos} kills")
             n+=1
-teste = Parser('games.log')
-teste.leitor()
-teste.gera_ranking()
+
+gerador = Parser()
+gerador.leitor()
+gerador.gera_relatorio()
+gerador.gera_ranking()
