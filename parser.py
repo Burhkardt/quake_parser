@@ -73,10 +73,7 @@ class Parser:
         with open("Ranking.json", "w") as saida:
             json.dump(posicoes, saida, indent=4)
             print("Arquivo de ranking gerado!")
-        for player, pontos in posicoes.items():
-            print(f"{n}: {player} com um total de {pontos} kills")
-            n+=1
-
+            
 gerador = Parser()
 gerador.leitor()
 gerador.gera_relatorio()
